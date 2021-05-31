@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
-
+import LinearGradient from 'react-native-linear-gradient';
 import {styles} from '../common/theme';
-import Button from '../components/Button';
-import Input from '../components/Input';
-import BottomComment from '../components/BottomComment';
+import Button from '../containers/Button';
+import Input from '../containers/Input';
+import BottomComment from '../containers/BottomComment';
 
 const LoginForm = ({navigation}) => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <LinearGradient
       style={{flex: 1}}

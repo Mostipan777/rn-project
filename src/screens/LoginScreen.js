@@ -3,9 +3,8 @@ import auth from '@react-native-firebase/auth';
 
 import LoginForm from '../components/LoginForm';
 
-const Login = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginScreen = () => {
+  
 
   const entry = async () => {
     try {
@@ -18,4 +17,4 @@ const Login = ({navigation}) => {
   return <LoginForm />;
 };
 
-export default Login;
+export default LoginScreen;

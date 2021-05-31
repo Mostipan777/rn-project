@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Main from '../screens/Main';
-import LogIn from '../screens/LogIn';
+import LoginForm from '../components/LoginForm';
 import UserScreen from '../screens/UserScreen';
 
 const Stack = createStackNavigator();
@@ -16,7 +16,7 @@ export default function Navigation() {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="LogIn" component={LogIn} />
+        <Stack.Screen name="LoginForm" component={LoginForm} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="UserScreen" component={UserScreen} />
       </Stack.Navigator>

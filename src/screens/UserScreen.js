@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import image from '../img/userLogo.png';
-import Button from '../components/Button';
+import Button from '../containers/Button';
 
 export default function UserScreen({user}) {
 

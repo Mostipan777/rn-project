@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import auth from '@react-native-firebase/auth';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
-import Button from '../components/Button';
-import FormInput from '../components/Input';
-import BottomComment from '../components/BottomComment';
+import Button from '../containers/Button';
+import Input from '../containers/Input';
+import BottomComment from '../containers/BottomComment';
 
 export default function Main({navigation}) {
   const [name, setName] = useState('');
@@ -14,11 +15,27 @@ export default function Main({navigation}) {
 
   const register = async () => {
     try {
-      await auth().createUserWithEmailAndPassword(email, password)
-      } catch (e) {
+      await auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          firestore()
+            .collection('users')
+            .doc(auth().currentUser.uid)
+            .set({
+              id: 1,
+              name: email,
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <LinearGradient
@@ -31,17 +48,17 @@ export default function Main({navigation}) {
         <View style={styles.container}>
           <Text style={styles.pageTitle}>Create an Account</Text>
           <View>
-            <FormInput
+            <Input
               placeholder="Email"
               onChangeText={email => setEmail(email)}
               value={email}
             />
-            <FormInput
+            <Input
               placeholder="Name"
               onChangeText={name => setName(name)}
               value={name}
             />
-            <FormInput
+            <Input
               secureTextEntry
               autoCorrect={false}
               placeholder="Password"
@@ -50,7 +67,7 @@ export default function Main({navigation}) {
             />
           </View>
           <View>
-            <Button title="Sign Up" onPress={() => register()}/>
+            <Button title="Sign Up" onPress={() => register()} />
             <BottomComment
               basicText={'Already have an account? '}
               link={'Log In'}
