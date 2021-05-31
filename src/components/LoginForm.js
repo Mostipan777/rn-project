@@ -1,24 +1,12 @@
-import React, {useState} from 'react';
-import LinearGradient from 'react-native-linear-gradient';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import auth from '@react-native-firebase/auth';
+import React from 'react';
+import {SafeAreaView, Text, View} from 'react-native';
 
+import {styles} from '../common/theme';
 import Button from '../components/Button';
-import FormInput from '../components/FormInput';
+import Input from '../components/Input';
 import BottomComment from '../components/BottomComment';
 
-export default function Login({navigation}) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const entry = async () => {
-    try {
-      await auth().signInWithEmailAndPassword(email, password)
-      } catch (e) {
-      console.log(e);
-    }
-  }
-
+const LoginForm = ({navigation}) => {
   return (
     <LinearGradient
       style={{flex: 1}}
@@ -30,12 +18,12 @@ export default function Login({navigation}) {
         <View style={styles.container}>
           <Text style={styles.pageTitle}>Welcome Back</Text>
           <View>
-            <FormInput
+            <Input
               placeholder="Email"
               onChangeText={email => setEmail(email)}
               value={email}
             />
-            <FormInput
+            <Input
               secureTextEntry
               autoCorrect={false}
               placeholder="Password"
@@ -44,7 +32,7 @@ export default function Login({navigation}) {
             />
           </View>
           <View>
-            <Button title="Log In" onPress={() => entry()}/>
+            <Button title="Log In" onPress={() => entry()} />
             <BottomComment
               basicText={'Don’t you have an account yet? '}
               link={'Sign Up'}
@@ -55,25 +43,6 @@ export default function Login({navigation}) {
       </SafeAreaView>
     </LinearGradient>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    marginTop: 128,
-    marginBottom: 115,
-  },
-  pageTitle: {
-    textAlign: 'center',
-    fontSize: 22,
-    fontWeight: '500',
-  },
-  bottomText: {
-    textAlign: 'center',
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#8A898E',
-    marginTop: 32,
-  },
-});
+export default LoginForm;

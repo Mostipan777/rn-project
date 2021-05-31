@@ -1,13 +1,10 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import {colors, styles} from '../common/theme'
+import {Text, TouchableOpacity} from 'react-native';
+import {colors, styles} from '../common/theme';
 
 const Button = ({title, onPress, ...rest}) => {
-  console.log(colors, styles)
+  console.log(colors, styles);
   return (
     <TouchableOpacity onPress={onPress} {...rest}>
       <LinearGradient
@@ -20,6 +17,6 @@ const Button = ({title, onPress, ...rest}) => {
       </LinearGradient>
     </TouchableOpacity>
   );
-}
+};
 
-export default Button
+export default Button;

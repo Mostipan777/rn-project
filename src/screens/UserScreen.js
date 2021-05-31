@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
 import auth from '@react-native-firebase/auth';
-
+import image from '../img/userLogo.png';
 import Button from '../components/Button';
 
 export default function UserScreen({user}) {
@@ -22,7 +22,7 @@ export default function UserScreen({user}) {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={require('../img/userLogo.png')} />
+          <Image source={image} />
           <View
             style={styles.userNameBackground}>
             <Text style={styles.userName}>{user._user.email}</Text>

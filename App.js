@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
-import Navigation from './navigation/navigation';
-import type {Node} from 'react';
+import Navigation from './src/navigation/navigation';
 
-import UserScreen from './screens/UserScreen';
+import UserScreen from './src/screens/UserScreen';
 
-const App: () => Node = () => {
+const App = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 

@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 
 import Button from '../components/Button';
-import FormInput from '../components/FormInput';
+import FormInput from '../components/Input';
 import BottomComment from '../components/BottomComment';
 
 export default function Main({navigation}) {
