@@ -8,16 +8,17 @@ const UserScreen = () => {
 
   const {user} = useContext(AuthContext);
   const [userName, setUserName] = useState('')
+  const userId = user._user.uid
 
   useEffect(() => {
     const subscriber = firestore()
       .collection('users')
-      .doc(user._user.uid)
+      .doc(userId)
       .onSnapshot(documentSnapshot => {
-        console.log(documentSnapshot.data());
+        setUserName(documentSnapshot.data());
       });
     return () => subscriber();
-  }, [user._user.uid]);
+  }, [userId]);
 
   return <UserProfile userName={userName.name}/>;
 };

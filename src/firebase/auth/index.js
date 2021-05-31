@@ -1,6 +1,7 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import {Alert} from 'react-native';
 
 export const AuthContext = createContext();
 
@@ -16,7 +17,7 @@ export const AuthProvider = ({children}) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
-            console.log(e);
+            Alert.alert(e.name, e.message.split(' ').slice(1).join(' '));
           }
         },
         createUser: async (email, password, name) => {
@@ -30,22 +31,22 @@ export const AuthProvider = ({children}) => {
                   .set({
                     name: name,
                   })
-                  .catch(error => {
-                    console.log(error);
+                  .catch(e => {
+                    Alert.alert(e.name, e.message.split(' ').slice(1).join(' '));
                   });
               })
-              .catch(error => {
-                console.log(error);
+              .catch(e => {
+                Alert.alert(e.name, e.message.split(' ').slice(1).join(' '));
               });
           } catch (e) {
-            console.log(e);
+            Alert.alert(e.name, e.message.split(' ').slice(1).join(' '));
           }
         },
         logout: async () => {
           try {
             await auth().signOut();
           } catch (e) {
-            console.log(e);
+            Alert.alert(e.name, e.message.split(' ').slice(1).join(' '));
           }
         },
       }}>

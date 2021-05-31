@@ -6,7 +6,7 @@ import Button from '../containers/Button';
 import {AuthContext} from '../firebase/auth';
 
 const UserProfile = ({userName}) => {
-  const {user, logout} = useContext(AuthContext);
+  const {logout} = useContext(AuthContext);
 
   return (
     <SafeAreaView style={{flex: 1}}>
