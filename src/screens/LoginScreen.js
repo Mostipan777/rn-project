@@ -1,20 +1,9 @@
-import React, {useState} from 'react';
-import auth from '@react-native-firebase/auth';
-
+import React, {useContext} from 'react';
 import LoginForm from '../components/LoginForm';
 
-const LoginScreen = () => {
-  
+const LoginScreen = ({navigation}) => {
 
-  const entry = async () => {
-    try {
-      await auth().signInWithEmailAndPassword(email, password);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  return <LoginForm />;
+  return <LoginForm navigation={navigation} />;
 };
 
 export default LoginScreen;

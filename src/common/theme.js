@@ -66,4 +66,20 @@ export const styles = StyleSheet.create({
     color: '#8A898E',
     marginTop: 32,
   },
+  userNameBackground: {
+    shadowOpacity: 0.1,
+    shadowRadius: 22,
+    shadowColor: '#000000',
+    shadowOffset: {height: 0, width: 0},
+    position: 'absolute',
+    bottom: -17,
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 8,
+    paddingHorizontal: 36,
+    borderRadius: 10,
+  },
+  userName: {
+    fontSize: 14,
+    fontWeight: '900',
+  }
 });

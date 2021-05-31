@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {styles} from '../common/theme';
 import Button from '../containers/Button';
 import Input from '../containers/Input';
 import BottomComment from '../containers/BottomComment';
+import {AuthContext} from '../firebase/auth';
 
 const LoginForm = ({navigation}) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {login} = useContext(AuthContext);
 
   return (
     <LinearGradient
@@ -36,11 +38,11 @@ const LoginForm = ({navigation}) => {
             />
           </View>
           <View>
-            <Button title="Log In" onPress={() => entry()} />
+            <Button title="Log In" onPress={() => login(email, password)} />
             <BottomComment
               basicText={'Don’t you have an account yet? '}
               link={'Sign Up'}
-              onPress={() => navigation.navigate('Main')}
+              onPress={() => navigation.navigate('SignUpScreen')}
             />
           </View>
         </View>

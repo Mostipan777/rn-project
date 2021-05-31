@@ -1,62 +1,25 @@
-import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View, Image} from 'react-native';
-import auth from '@react-native-firebase/auth';
-import image from '../img/userLogo.png';
-import Button from '../containers/Button';
+import React, {useState, useEffect, useContext} from 'react';
+import UserProfile from '../components/UserProfile';
+import {AuthContext} from '../firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
-export default function UserScreen({user}) {
 
-  const logout = async () => {
-    try {
-      await auth().signOut()
-      } catch (e) {
-      console.log(e);
-    }
-  }
+const UserScreen = () => {
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Image source={image} />
-          <View
-            style={styles.userNameBackground}>
-            <Text style={styles.userName}>{user._user.email}</Text>
-          </View>
-        </View>
-        <View>
-          <Button title="Logout" onPress={() => logout()}/>
-        </View>
-      </View>
-    </SafeAreaView>
-  );
-}
+  const {user} = useContext(AuthContext);
+  const [userName, setUserName] = useState('')
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    marginTop: 128,
-    marginBottom: 164,
-  },
-  userNameBackground: {
-    shadowOpacity: 0.1,
-    shadowRadius: 22,
-    shadowColor: '#000000',
-    shadowOffset: {height: 0, width: 0},
-    position: 'absolute',
-    bottom: -17,
-    backgroundColor: '#FFFFFF',
-    paddingVertical: 8,
-    paddingHorizontal: 36,
-    borderRadius: 10,
-  },
-  userName: {
-    fontSize: 14,
-    fontWeight: '900',
-  }
-});
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('users')
+      .doc(user._user.uid)
+      .onSnapshot(documentSnapshot => {
+        console.log(documentSnapshot.data());
+      });
+    return () => subscriber();
+  }, [user._user.uid]);
+
+  return <UserProfile userName={userName.name}/>;
+};
+
+export default UserScreen;
