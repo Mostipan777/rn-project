@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import SignUpForm from '../components/SignUpForn';
 
 const SignUpScreen = ({navigation}) => {

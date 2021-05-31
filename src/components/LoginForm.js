@@ -6,9 +6,9 @@ import Button from '../containers/Button';
 import Input from '../containers/Input';
 import BottomComment from '../containers/BottomComment';
 import {AuthContext} from '../firebase/auth';
+import Mail from '../img/Mail';
 
 const LoginForm = ({navigation}) => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {login} = useContext(AuthContext);
@@ -24,11 +24,25 @@ const LoginForm = ({navigation}) => {
         <View style={styles.container}>
           <Text style={styles.pageTitle}>Welcome Back</Text>
           <View>
-            <Input
-              placeholder="Email"
-              onChangeText={email => setEmail(email)}
-              value={email}
-            />
+            <View
+              style={{
+                opacity: 0.76,
+                flexDirection: 'row',
+                marginHorizontal: 24,
+                marginVertical: 16,
+                borderBottomWidth: 1,
+                borderBottomColor: '#A3A3A3',
+                height: 40,
+                alignItems: 'center',
+              }}>
+              <Mail style={{marginRight: 12,}} />
+              <Input
+                style={{flex: 1, fontSize: 16, fontWeight: '500'}}
+                placeholder="Email"
+                onChangeText={email => setEmail(email)}
+                value={email}
+              />
+            </View>
             <Input
               secureTextEntry
               autoCorrect={false}

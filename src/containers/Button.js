@@ -4,7 +4,6 @@ import {Text, TouchableOpacity} from 'react-native';
 import {colors, styles} from '../common/theme';
 
 const Button = ({title, onPress, ...rest}) => {
-  console.log(colors, styles);
   return (
     <TouchableOpacity onPress={onPress} {...rest}>
       <LinearGradient

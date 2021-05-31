@@ -29,10 +29,13 @@ export const AuthProvider = ({children}) => {
                   .collection('users')
                   .doc(auth().currentUser.uid)
                   .set({
-                    name: name,
+                    name,
                   })
                   .catch(e => {
-                    Alert.alert(e.name, e.message.split(' ').slice(1).join(' '));
+                    Alert.alert(
+                      e.name,
+                      e.message.split(' ').slice(1).join(' '),
+                    );
                   });
               })
               .catch(e => {

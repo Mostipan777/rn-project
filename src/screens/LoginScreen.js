@@ -1,8 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import LoginForm from '../components/LoginForm';
 
 const LoginScreen = ({navigation}) => {
-
   return <LoginForm navigation={navigation} />;
 };
 
