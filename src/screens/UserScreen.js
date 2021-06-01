@@ -1,10 +1,11 @@
 import React, {useState, useEffect, useContext} from 'react';
-import UserProfile from '../components/UserProfile';
-import {AuthContext} from '../firebase/auth';
+import UserProfile from '../components/User/Profile/UserProfile';
+import {AppContext} from '../store';
 import firestore from '@react-native-firebase/firestore';
+import {logout} from '../firebase/auth'
 
 const UserScreen = () => {
-  const {user} = useContext(AuthContext);
+  const {user} = useContext(AppContext);
   const [userName, setUserName] = useState('');
   const userId = user._user.uid;
 
@@ -18,7 +19,7 @@ const UserScreen = () => {
     return () => subscriber();
   }, [userId]);
 
-  return <UserProfile userName={userName.name} />;
+  return <UserProfile userName={userName.name} logout={logout}/>;
 };
 
 export default UserScreen;

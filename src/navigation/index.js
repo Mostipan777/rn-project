@@ -1,12 +1,12 @@
 import React from 'react';
-import { AuthProvider } from '../firebase/auth';
+import { AppProvider } from '../store';
 import Router from './Router';
 
 const Providers = () => {
   return (
-    <AuthProvider>
+    <AppProvider>
       <Router />
-    </AuthProvider>
+    </AppProvider>
   );
 }
 

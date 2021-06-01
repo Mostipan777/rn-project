@@ -1,7 +1,8 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {Text, TouchableOpacity} from 'react-native';
-import {colors, styles} from '../common/theme';
+import {colors} from '../../../common/theme';
+import {styles} from './styles'
 
 const Button = ({title, onPress, ...rest}) => {
   return (

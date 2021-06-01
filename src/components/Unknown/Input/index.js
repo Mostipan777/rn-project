@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextInput} from 'react-native';
-import {styles} from '../common/theme';
+import {styles} from './styles';
 
 const Input = ({placeholder, value, ...rest}) => {
   return (

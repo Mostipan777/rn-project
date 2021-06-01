@@ -1,12 +1,10 @@
-import React, {useContext} from 'react';
-import {styles} from '../common/theme';
+import React from 'react';
+import {styles} from '../../../common/theme';
 import {SafeAreaView, Text, View, Image} from 'react-native';
-import image from '../img/userLogo.png';
-import Button from '../containers/Button';
-import {AuthContext} from '../firebase/auth';
+import UserLogo from '../../../img/UserLogo';
+import Button from '../../Unknown/Button';
 
-const UserProfile = ({userName}) => {
-  const {logout} = useContext(AuthContext);
+const UserProfile = ({userName, logout}) => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -16,7 +14,7 @@ const UserProfile = ({userName}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={image} />
+          <UserLogo />
           <View style={styles.userNameBackground}>
             <Text style={styles.userName}>{userName}</Text>
           </View>

@@ -8,46 +8,6 @@ export const colors = {
 };
 
 export const styles = StyleSheet.create({
-  buttonTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: 'white',
-  },
-  button: {
-    alignItems: 'center',
-    borderRadius: 10,
-    marginHorizontal: 24,
-    paddingVertical: 22,
-  },
-  input: {
-    alignItems: 'center',
-    marginHorizontal: 24,
-    marginVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(163, 163,163, .24)',
-    fontSize: 16,
-    height: 40,
-  },
-  comment: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  basicText: {
-    textAlign: 'center',
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#8A898E',
-    marginTop: 32,
-  },
-  link: {
-    textAlign: 'center',
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#8A898E',
-    marginTop: 32,
-    textDecorationLine: 'underline',
-  },
   container: {
     flex: 1,
     justifyContent: 'space-between',
@@ -63,7 +23,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
     fontWeight: '500',
-    color: '#8A898E',
+    color: colors.darkGray,
     marginTop: 32,
   },
   userNameBackground: {
@@ -81,5 +41,18 @@ export const styles = StyleSheet.create({
   userName: {
     fontSize: 14,
     fontWeight: '900',
+  },
+  inputContainer: {
+    opacity: 0.75,
+    flexDirection: 'row',
+    marginHorizontal: 24,
+    marginVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGray,
+    height: 40,
+    alignItems: 'center',
+  },
+  inputIcon: {
+    marginRight: 12
   }
 });

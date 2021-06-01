@@ -2,11 +2,11 @@ import React, {useContext, useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 import Navigation from '../navigation/navigation';
 
-import {AuthContext} from '../firebase/auth';
+import {AppContext} from '../store';
 import UserScreen from '../screens/UserScreen';
 
 const Router = () => {
-  const {user, setUser} = useContext(AuthContext);
+  const {user, setUser} = useContext(AppContext);
   const [initializing, setInitializing] = useState(true);
 
   const onAuthStateChanged = user => {
