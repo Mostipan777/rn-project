@@ -4,6 +4,7 @@ import Navigation from '../navigation/navigation';
 
 import {AppContext} from '../store';
 import UserScreen from '../screens/UserScreen';
+import LibraryScreen from '../screens/LibraryScreen';
 
 const Router = () => {
   const {user, setUser} = useContext(AppContext);
@@ -25,7 +26,7 @@ const Router = () => {
     return <Navigation />;
   }
 
-  return <UserScreen />;
+  return <LibraryScreen />;
 };
 
 export default Router;
