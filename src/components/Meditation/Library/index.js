@@ -1,12 +1,10 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {ImageBackground, View, Text} from 'react-native';
 import library_card from '../../../img/library_card.png';
 import List from '../TrackList';
 import {AppContext} from '../../../store';
-import {Anchor} from '../../Unknown/Icons';
 import {styles} from './styles';
 import ProgressBar from '../ProgressBar';
-import LottieView from 'lottie-react-native';
 
 const Library = ({isLoading, navigation}) => {
   const {data} = useContext(AppContext);
@@ -18,7 +16,7 @@ const Library = ({isLoading, navigation}) => {
   };
 
   return (
-    <View style={{height: '75%'}}>
+    <View style={styles.container}>
       <ImageBackground
         style={styles.backgroundImage}
         source={library_card}
@@ -27,9 +25,8 @@ const Library = ({isLoading, navigation}) => {
           <Text style={styles.date}>{dateToString()}</Text>
           <Text style={styles.libraryTitle}>Let’s work on your intention</Text>
         </View>
-        <View style={{alignItems: 'center', marginBottom: 70}}>
+        <View style={styles.progressBar}>
           <ProgressBar />
-          {/* <Anchor style={styles.anchor} /> */}
         </View>
       </ImageBackground>
       <List navigation={navigation} data={data} isLoading={isLoading} />

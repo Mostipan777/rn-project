@@ -1,12 +1,13 @@
 import React from 'react';
 import {FlatList, View, Text, TouchableOpacity, Image} from 'react-native';
-
+import LoadingBar from '../LoadingBar'
 import {useNavigation} from '@react-navigation/native';
 import {PlayButton} from '../../Unknown/Icons';
 import {styles} from './styles';
 
 const TrackList = ({data, isLoading}) => {
   const navigation = useNavigation();
+
 
   const formatedDuration = duration => {
     return `${Math.round(duration / 60)} mins`;
@@ -16,7 +17,7 @@ const TrackList = ({data, isLoading}) => {
     return (
       <View style={styles.container}>
         <View style={styles.item}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={styles.itemContent}>
             <Image source={{uri: item.uri}} style={styles.logo}></Image>
             <View>
               <Text style={styles.subtitle}>{item.subtitle}</Text>
@@ -39,9 +40,11 @@ const TrackList = ({data, isLoading}) => {
     );
   };
 
+  
+
   return (
     <View>
-      {isLoading ? null : (
+      {isLoading ? <LoadingBar /> : (
         <FlatList
           horizontal
           data={data}

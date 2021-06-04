@@ -2,11 +2,11 @@ import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {styles} from './styles';
+import {colors} from '../../../common/theme';
 import Button from '../../Unknown/Button';
 import Input from '../../Unknown/Input';
 import BottomComment from '../../Unknown/BottomComment';
-import Mail from '../../../img/Mail';
-import Lock from '../../../img/Lock';
+import {Mail, Lock} from '../../Unknown/Icons';
 
 const LoginForm = ({
   navigation,
@@ -22,7 +22,7 @@ const LoginForm = ({
       start={{x: 0, y: 0}}
       end={{x: 1, y: 1}}
       locations={[0, 1]}
-      colors={['#FFFFFF', '#EDE8E4']}>
+      colors={[colors.white, colors.lightBronze]}>
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
           <Text style={styles.pageTitle}>Welcome Back</Text>

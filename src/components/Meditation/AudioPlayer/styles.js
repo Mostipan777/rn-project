@@ -1,7 +1,13 @@
 import {StyleSheet} from 'react-native';
-import {fonts} from '../../../common/theme'
+import {fonts} from '../../../common/theme';
+import {Dimensions} from 'react-native';
+
+let height = Dimensions.get('window').height / 3.6
 
 export const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+  },
   backgroundVideo: {
     position: 'absolute',
     top: 0,
@@ -48,5 +54,20 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  anchor: {
+    position: 'absolute',
+    top: height,
+  },
+  anchorBox: {
+    alignItems: 'center',
+  },
+  playbackTime: {
+    marginVertical: 30,
+    height: 350,
+    justifyContent: 'space-between',
+  },
+  slider: {
+    marginHorizontal: 40,
   },
 });

@@ -1,10 +1,14 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../../common/theme';
+import {Dimensions} from 'react-native';
+let width = Dimensions.get('window').width / 1.17
 
 export const styles = StyleSheet.create({
+  itemContent: {
+    flexDirection: 'row'
+  },
   item: {
-    marginLeft: 24,
-    width: 327,
+    marginLeft: 20,
     padding: 15,
     marginVertical: 15,
     backgroundColor: 'white',
@@ -12,6 +16,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
+    width: width,
     shadowOpacity: 0.14,
     shadowRadius: 10,
     shadowColor: 'black',

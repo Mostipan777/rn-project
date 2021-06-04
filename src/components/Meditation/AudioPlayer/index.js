@@ -4,6 +4,7 @@ import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import Video from 'react-native-video';
 import {AppContext} from '../../../store';
 import Slider from '@react-native-community/slider';
+import {Anchor} from '../../Unknown/Icons';
 import playerBackground from '../../../img/playerBackground.png';
 import additionalPlayerBackground from '../../../img/additionalPlayerBackground.png';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -23,6 +24,7 @@ const PlayerScreen = () => {
     useContext(AppContext);
   const navigation = useNavigation();
   const route = useRoute();
+
   const goBack = () => {
     navigation.goBack();
   };
@@ -39,11 +41,16 @@ const PlayerScreen = () => {
   const progress = event => {
     setPlaybackTime(parseInt(event.currentTime));
     const percent = (parseInt(event.currentTime) / track.duration) * 100;
-    if (meditationProgress < percent) {setMeditationProgress(percent)}
+    if (meditationProgress < percent) {
+      setMeditationProgress(percent);
+    }
   };
 
   return (
-    <ImageBackground style={{flex: 1}} source={playerBackground}>
+    <ImageBackground style={styles.backgroundImage} source={playerBackground}>
+      {!isPause ? <View style={styles.anchorBox} opacity={0.2}>
+        <Anchor style={styles.anchor}/>
+      </View> : null}
       <ImageBackground
         opacity={isPause ? 0.6 : 0}
         source={additionalPlayerBackground}
@@ -57,7 +64,7 @@ const PlayerScreen = () => {
           </View>
           <Text style={styles.title}>{track.title}</Text>
         </View>
-        <View style={{height: 380, justifyContent: 'space-between'}}>
+        <View style={styles.playbackTime}>
           <View opacity={isPause ? 0.2 : 1}>
             <Text style={styles.time}>{formatedPlaybackTime()}</Text>
           </View>
@@ -67,12 +74,12 @@ const PlayerScreen = () => {
         </View>
         <View opacity={0.4}>
           <Slider
-            style={{marginHorizontal: 40}}
+            style={styles.slider}
             minimumValue={0}
             maximumValue={track.duration}
             value={playbackTime}
-            minimumTrackTintColor="#FFFFFF"
-            maximumTrackTintColor="#000000"
+            minimumTrackTintColor="black"
+            maximumTrackTintColor="white"
             onValueChange={value => setTime(value)}
           />
         </View>

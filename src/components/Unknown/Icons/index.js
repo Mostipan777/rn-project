@@ -8,3 +8,7 @@ export {default as LibraryActiveIcon} from './LibraryActiveIcon';
 export {default as LibraryUnactiveIcon} from './LibraryUnactiveIcon';
 export {default as ProfileActiveIcon} from './ProfileActiveIcon';
 export {default as ProfileUnactiveIcon} from './ProfileUnactiveIcon';
+export {default as Info} from './Info';
+export {default as Lock} from './Lock';
+export {default as Mail} from './Mail';
+

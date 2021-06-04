@@ -20,7 +20,7 @@ const ProgressBar = () => {
   return (
     <LottieView
       style={{width: 300, height: 300}}
-      source={require('../../animation/progressbar.json')}
+      source={require('../../../animation/progressbar.json')}
       speed={1}
       ref={LottieRef}
       loop={false}

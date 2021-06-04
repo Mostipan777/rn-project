@@ -1,7 +1,14 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../../common/theme'
+import {colors} from '../../../common/theme';
 
 export const styles = StyleSheet.create({
+  container: {
+    height: '75%',
+  },
+  progressBar: {
+    alignItems: 'center',
+    marginBottom: 70,
+  },
   backgroundImage: {
     height: '102%',
     justifyContent: 'space-between',

@@ -2,12 +2,11 @@ import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView, Text, View} from 'react-native';
 import {styles} from './styles';
+import {colors} from '../../../common/theme';
 import Button from '../../Unknown/Button';
 import Input from '../../Unknown/Input';
 import BottomComment from '../../Unknown/BottomComment';
-import Mail from '../../../img/Mail';
-import Info from '../../../img/Info';
-import Lock from '../../../img/Lock';
+import {Mail, Lock, Info} from '../../Unknown/Icons';
 
 const SignUpForm = ({
   navigation,
@@ -25,7 +24,7 @@ const SignUpForm = ({
       start={{x: 0, y: 0}}
       end={{x: 1, y: 1}}
       locations={[0, 1]}
-      colors={['#FFFFFF', '#EDE8E4']}>
+      colors={[colors.white, colors.lightBronze]}>
       <SafeAreaView style={{flex: 1}}>
         <View style={styles.container}>
           <Text style={styles.pageTitle}>Create an Account</Text>
