@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {styles} from '../../../common/theme';
+import {styles} from './styles';
 import Button from '../../Unknown/Button';
 import Input from '../../Unknown/Input';
 import BottomComment from '../../Unknown/BottomComment';

@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, ImageBackground, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {useState, useContext} from 'react';
+import {styles} from './styles';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import Video from 'react-native-video';
+import {AppContext} from '../../../store';
 import Slider from '@react-native-community/slider';
 import playerBackground from '../../../img/playerBackground.png';
 import additionalPlayerBackground from '../../../img/additionalPlayerBackground.png';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import PlayerButton from '../../Unknown/PlayerButton';
 import {
   PauseButton,
@@ -12,20 +15,31 @@ import {
   CloseButton,
 } from '../../Unknown/Icons';
 
-const PlayerScreen = ({setModalVisible}) => {
+const PlayerScreen = () => {
   const [isPause, setIsPause] = useState(false);
   const [playbackTime, setPlaybackTime] = useState(null);
   const [time, setTime] = useState(null);
+  const {data, meditationProgress, setMeditationProgress} =
+    useContext(AppContext);
+  const navigation = useNavigation();
+  const route = useRoute();
+  const goBack = () => {
+    navigation.goBack();
+  };
+
+  const track = data[route.params.itemId - 1];
 
   const formatedPlaybackTime = () => {
     const seconds = `0${playbackTime % 60}`.slice(-2);
-    const minutes = `0${Math.floor(playbackTime / 60) % 60}`.slice(-2);
+    const minutes = `${Math.floor(playbackTime / 60) % 60}`;
 
     return `${minutes} : ${seconds}`;
   };
 
-  const progress = e => {
-    setPlaybackTime(parseInt(e.currentTime));
+  const progress = event => {
+    setPlaybackTime(parseInt(event.currentTime));
+    const percent = (parseInt(event.currentTime) / track.duration) * 100;
+    if (meditationProgress < percent) {setMeditationProgress(percent)}
   };
 
   return (
@@ -34,32 +48,34 @@ const PlayerScreen = ({setModalVisible}) => {
         opacity={isPause ? 0.6 : 0}
         source={additionalPlayerBackground}
         style={styles.image}>
-        <TouchableOpacity
-          style={styles.closeButton}
-          onPress={() => setModalVisible(false)}>
+        <TouchableOpacity style={styles.closeButton} onPress={() => goBack()}>
           <CloseButton />
         </TouchableOpacity>
-        <Text style={styles.text}>Pink</Text>
-        <View style={{height: 300, justifyContent: 'space-between'}}>
+        <View>
+          <View opacity={0.4}>
+            <Text style={styles.subtitle}>{track.subtitle}</Text>
+          </View>
+          <Text style={styles.title}>{track.title}</Text>
+        </View>
+        <View style={{height: 380, justifyContent: 'space-between'}}>
           <View opacity={isPause ? 0.2 : 1}>
-            <Text style={styles.text}>{formatedPlaybackTime()}</Text>
+            <Text style={styles.time}>{formatedPlaybackTime()}</Text>
           </View>
           {isPause ? (
-            <PlayerButton
-              title={'Finish Later'}
-              onPress={() => setModalVisible(false)}
-            />
+            <PlayerButton title={'Finish Later'} onPress={() => goBack()} />
           ) : null}
         </View>
-        <Slider
-          style={{marginHorizontal: 40}}
-          minimumValue={0}
-          maximumValue={200}
-          value={playbackTime}
-          minimumTrackTintColor="#FFFFFF"
-          maximumTrackTintColor="#000000"
-          onValueChange={value => setTime(value)}
-        />
+        <View opacity={0.4}>
+          <Slider
+            style={{marginHorizontal: 40}}
+            minimumValue={0}
+            maximumValue={track.duration}
+            value={playbackTime}
+            minimumTrackTintColor="#FFFFFF"
+            maximumTrackTintColor="#000000"
+            onValueChange={value => setTime(value)}
+          />
+        </View>
         <View style={styles.controls}>
           <TouchableOpacity
             style={styles.controlButton}
@@ -79,7 +95,9 @@ const PlayerScreen = ({setModalVisible}) => {
         </View>
       </ImageBackground>
       <Video
-        source={require('../../../audio/audio.mp3')}
+        source={{
+          uri: track.audio,
+        }}
         fullscreen={true}
         currentPlaybackTime
         controls={true}
@@ -89,47 +107,11 @@ const PlayerScreen = ({setModalVisible}) => {
         volume={1.0}
         rate={1.0}
         ignoreSilentSwitch={'obey'}
-        onProgress={e => progress(e)}
+        onProgress={event => progress(event)}
         currentTime={time}
       />
     </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-  image: {
-    flex: 1,
-    resizeMode: 'stretch',
-    justifyContent: 'space-between',
-    paddingVertical: 100,
-  },
-  text: {
-    marginTop: 30,
-    color: 'white',
-    fontSize: 50,
-    textAlign: 'center',
-  },
-  controlButton: {
-    marginHorizontal: 20,
-    alignContent: 'center',
-  },
-  closeButton: {
-    position: 'absolute',
-    left: 28,
-    top: 68,
-  },
-  controls: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default PlayerScreen;

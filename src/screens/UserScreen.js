@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import UserProfile from '../components/User/Profile/UserProfile';
 import {AppContext} from '../store';
 import firestore from '@react-native-firebase/firestore';
-import {logout} from '../firebase/auth'
+import {logout} from '../firebase/auth';
 
 const UserScreen = () => {
   const {user} = useContext(AppContext);
@@ -19,7 +19,7 @@ const UserScreen = () => {
     return () => subscriber();
   }, [userId]);
 
-  return <UserProfile userName={userName.name} logout={logout}/>;
+  return <UserProfile userName={userName.name} logout={logout} />;
 };
 
 export default UserScreen;

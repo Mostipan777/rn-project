@@ -1,10 +1,8 @@
 import React, {useContext, useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
-import Navigation from '../navigation/navigation';
-
+import LoginNavigation from './LoginNavigation';
+import UserNavigation from './UserNavigation';
 import {AppContext} from '../store';
-import UserScreen from '../screens/UserScreen';
-import LibraryScreen from '../screens/LibraryScreen';
 
 const Router = () => {
   const {user, setUser} = useContext(AppContext);
@@ -22,11 +20,11 @@ const Router = () => {
   
   if (initializing) return null;
 
-  if (!user) {
-    return <Navigation />;
+  if (user) {
+    return <UserNavigation />;
   }
 
-  return <LibraryScreen />;
+  return <LoginNavigation />;
 };
 
 export default Router;

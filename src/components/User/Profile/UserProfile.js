@@ -1,5 +1,5 @@
 import React from 'react';
-import {styles} from '../../../common/theme';
+import {styles} from './styles';
 import {SafeAreaView, Text, View, Image} from 'react-native';
 import UserLogo from '../../../img/UserLogo';
 import Button from '../../Unknown/Button';
@@ -7,7 +7,7 @@ import Button from '../../Unknown/Button';
 const UserProfile = ({userName, logout}) => {
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={styles.container}>
         <View
           style={{

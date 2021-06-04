@@ -1,62 +1,46 @@
-import React, {useState, useEffect} from 'react';
-import firestore from '@react-native-firebase/firestore';
+import React from 'react';
 import {FlatList, View, Text, TouchableOpacity, Image} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
 import {PlayButton} from '../../Unknown/Icons';
 import {styles} from './styles';
 
-const TrackList = ({play}) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+const TrackList = ({data, isLoading}) => {
+  const navigation = useNavigation();
 
-  const fetchTracks = async () => {
-    const trackList = [];
-    const snapshot = await firestore().collection('meditations').get();
-    snapshot.forEach(doc => {
-      const {id, title, subtitle, duration, uri} = doc.data();
-      trackList.push({
-        id,
-        title,
-        subtitle,
-        duration,
-        uri,
-      });
-      setData(trackList);
-      setIsLoading(false);
-    });
+  const formatedDuration = duration => {
+    return `${Math.round(duration / 60)} mins`;
   };
-
-  useEffect(() => {
-    fetchTracks();
-  }, []);
-
-  const formatedDuration = (duration) => {
-    const seconds = `0${duration % 60}`.slice(-2);
-    const minutes = `0${Math.floor(duration / 60) % 60}`.slice(-2);
-
-    return `${minutes} : ${seconds}`;
-  };
-
 
   const renderItem = ({item}) => {
     return (
-      <View style={styles.item}>
-        <View style={{flexDirection: 'row'}}>
-          <Image source={{uri: item.uri}} style={styles.logo}></Image>
-          <View>
-            <Text>{item.subtitle}</Text>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text>{formatedDuration(item.duration)}</Text>
+      <View style={styles.container}>
+        <View style={styles.item}>
+          <View style={{flexDirection: 'row'}}>
+            <Image source={{uri: item.uri}} style={styles.logo}></Image>
+            <View>
+              <Text style={styles.subtitle}>{item.subtitle}</Text>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.duration}>
+                {formatedDuration(item.duration)}
+              </Text>
+            </View>
           </View>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('AudioPlayer', {
+                itemId: item.id,
+              })
+            }>
+            <PlayButton />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => play(true)}>
-          <PlayButton />
-        </TouchableOpacity>
       </View>
     );
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       {isLoading ? null : (
         <FlatList
           horizontal

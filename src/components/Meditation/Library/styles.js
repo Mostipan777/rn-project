@@ -1,8 +1,9 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../../common/theme'
 
 export const styles = StyleSheet.create({
   backgroundImage: {
-    height: '83%',
+    height: '102%',
     justifyContent: 'space-between',
   },
   topText: {
@@ -12,19 +13,20 @@ export const styles = StyleSheet.create({
   date: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#C2C2C2',
+    color: colors.gray,
   },
   libraryTitle: {
     fontSize: 22,
     fontWeight: '500',
   },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
   title: {
     fontSize: 32,
+  },
+  anchor: {
+    marginBottom: 80,
+    shadowOpacity: 0.3,
+    shadowRadius: 50,
+    shadowColor: 'black',
+    shadowOffset: {height: 0, width: 0},
   },
 });
